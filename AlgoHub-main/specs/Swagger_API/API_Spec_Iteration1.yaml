@@ -1,0 +1,911 @@
+swagger: '2.0'
+info:
+  title: ams-api
+  version: 1.0.1
+schemes:
+  - https
+tags:
+  - name: algorithms
+    description: Operations related to algorithms
+  - name: implementations
+    description: Operations related to implementations
+  - name: benchmarks
+    description: Operations related to benchmarks
+  - name: machine configurations
+    description: Operations related to machine configurations
+  - name: problem instances
+    description: Operations related to problem instances
+  - name: users
+    description: Operations related to users
+
+paths:
+
+  # ------------------ ALGORITHMS BEGIN ------------------------------
+  
+  # Clients: [Registered Users, Anonymous Users, Admins]
+  /algorithms/{id}:
+    get:
+      tags:
+        - algorithms
+      summary: Get algorithm by id
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/AlgorithmResponse'
+            
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+            
+  # Clients: [Registered Users, Admins]
+  /algorithms/add:
+    post:
+      tags:
+        - algorithms
+      summary: Create algorithm
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: AlgorithmAddRequest
+          required: true
+          schema:
+            $ref: '#/definitions/AlgorithmAddRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/AlgorithmAddResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  
+  # Clients: [Registered Users, Admins]
+  /algorithms/reclassify:
+    post:
+      tags:
+        - algorithms
+      summary: Reclassify algorithm
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: AlgorithmReclassifyRequest
+          required: true
+          schema:
+            $ref: '#/definitions/AlgorithmReclassifyRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/AlgorithmReclassifyResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  
+  # Clients: [Registered Users, Admins]
+  /algorithms/remove:
+    post:
+      tags:
+        - algorithms
+      summary: Remove algorithm by id
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: RemoveAlgorithm
+          required: true
+          schema:
+            $ref: '#/definitions/RemoveRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/RemoveResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  # ------------------ ALGORITHMS END ------------------------------
+
+
+  # ------------------ CLASSIFICATIONS BEGIN -----------------------
+  
+  # Clients: [Registered Users, Admins]
+  /classifications/add:
+    post:
+      tags:
+        - classifications
+      summary: Create classification
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: ClassificationAddRequest
+          required: true
+          schema:
+            $ref: '#/definitions/ClassificationAddRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/ClassificationAddResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  
+  # Clients: [Registered Users, Anonymous Users, Admins]
+  /classifications/hierarchy:
+    get:
+      tags:
+        - classifications
+      summary: Get hierarchy
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/ClassificationHierarchyResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse' 
+  
+  # Clients: [Registered Users, Anonymous Users, Admins]
+  /classifications/{id}:
+    get:
+      tags:
+        - classifications
+      summary: Get classification by id
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/ClassificationResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse' 
+  
+  # Clients: [Registered Users, Admins]
+  /classifications/remove:
+    post:
+      tags:
+        - classifications
+      summary: Remove classification by id
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: RemoveClassification
+          required: true
+          schema:
+            $ref: '#/definitions/RemoveRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/RemoveResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  
+  # Clients: [Registered Users, Admins]     
+  /classifications/merge:
+    post:
+      tags:
+        - classifications
+      summary: Merge classifications by ids
+      produces:
+        - application/json
+      parameters:
+        - name: MergeInfo
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ClassificationMergeRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/ClassificationMergeResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      
+            
+  # ------------------ CLASSIFICATIONS END ------------------------------
+
+
+
+  # ------------------ IMPLEMENTATIONS BEGIN -----------------------
+  
+  # Clients: [Registered Users, Anonymous Users, Admins]
+  /implementations/{id}:
+    get:
+      tags:
+        - implementations
+      summary: Get implementation by id
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/ImplementationResponse'
+            
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  
+  # Clients: [Registered Users, Admins]  
+  /implementations/add:
+    post:
+      tags:
+        - implementations
+      summary: Create Implementation
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: ImplementationAddRequest
+          required: true
+          schema:
+            $ref: '#/definitions/ImplementationAddRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/ImplementationAddResponse'
+            
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  
+  # Clients: [Registered Users, Admins]     
+  /implementations/remove:
+    post:
+      tags:
+        - implementations
+      summary: Remove implementation with given id
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: RemoveImplementation
+          required: true
+          schema:
+            $ref: '#/definitions/RemoveRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/RemoveResponse'
+            
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  # ------------------ IMPLEMENTATIONS END ---------------------------
+
+  # ------------------ BENCHMARKS BEGIN ------------------------------
+  
+  # Clients: [Registered Users, Anonymous Users, Admins]
+  /benchmarks/{id}:
+    get:
+      tags:
+        - benchmarks
+      summary: Get benchmark with given id
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/BenchmarkResponse'
+            
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  
+  # Clients: [Registered Users, Anonymous Users, Admins]
+  /benchmarks/add:
+    post:
+      tags:
+        - benchmarks
+      summary: Create benchmarks
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: BenchmarkAddRequest
+          required: true
+          schema:
+            $ref: '#/definitions/BenchmarkAddRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/BenchmarkAddResponse'
+            
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+            
+  # Clients: [Registered Users, Admins]         
+  /benchmarks/remove:
+    post:
+      tags:
+        - benchmarks
+      summary: Remove benchmark with given id
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: RemoveBenchmark
+          required: true
+          schema:
+            $ref: '#/definitions/RemoveRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/RemoveResponse'
+            
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  # ------------------ BENCHMARKS END ------------------------------#
+
+  # ------------------ PROBLEM INSTANCES BEGIN -------------------
+  
+  # Clients: [Registered Users, Anonymous Users, Admins]
+  /problem-instances/{id}:
+    get:
+      tags:
+        - problem instances
+      summary: Get problem instance by id
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/ProblemInstanceResponse'
+            
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  
+  # Clients: [Registered Users, Admins] 
+  /problem-instances/add:
+    post:
+      tags:
+        - problem instances
+      summary: Create problem instance
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: AddProblemInstanceRequest
+          required: true
+          schema:
+            $ref: '#/definitions/ProblemInstanceAddRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/ProblemInstanceAddResponse'
+            
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  
+  # Clients: [Registered Users, Admins]  
+  /problem-instances/remove:
+    post:
+      tags:
+        - problem instances
+      summary: Remove problem instance
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: RemoveProblemInstance
+          required: true
+          schema:
+            $ref: '#/definitions/RemoveRequest'
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/RemoveResponse'
+            
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+            
+  # ------------------ PROBLEM INSTANCES END -------------------
+
+  # ------------------ USERS BEGIN -----------------------------
+  
+  # Clients: [Registered Users, Admins]
+  /users/{id}/activity:
+    get:
+      tags:
+        - users
+      summary: Fetch user's activity
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: User activity fetched
+          schema:
+            $ref: '#/definitions/UserActivityResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+
+definitions:
+
+  # ------------------ GENERIC REQUEST/RESPONSE DEFINITIONS BEGIN --------------------
+
+  RemoveRequest:
+    type: object
+    properties:
+      id:
+        type: string
+
+  RemoveResponse:
+    type: object
+    required:
+      - statusCode
+      - error
+    properties:
+      statusCode:
+        type: integer
+      error:
+        type: string
+
+  ErrorResponse:
+    type: object
+    properties:
+      errorMessage:
+        type: string
+      statusCode:
+        type: integer
+
+  # ------------------ GENERIC REQUEST/RESPONSE DEFINITIONS ENDS --------------------
+
+  # ------------------ CORE MODEL DEFINITIONS BEGIN --------------------
+  # notes: 
+  #        1) Here we define the core entities to be used by our interfaces.
+  #        2) Core entity id will be blank when used in add requests as backend supplies id.
+  #        3) Arrays of models within newly created models may be empty. 
+  
+  AlgorithmInfo:
+    type: object
+    required:
+    - name
+    - description
+    - parentClassification
+    - authorId
+    properties:
+      id:
+        type: string
+      name:
+          type: string
+      description:
+        type: string
+      implementations:
+        type: array
+        items:
+          $ref: "#/definitions/ImplementationInfo"
+      problems:
+        type: array
+        items:
+          $ref: "#/definitions/ProblemInstanceInfo"
+      parentClassificationId:
+       type: string
+      authorId: 
+        type: string
+      
+  ImplementationInfo:
+    type: object
+    required:
+    - name
+    - parentAlgorithmId
+    - authorId
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      filename:
+        type: string
+      parentAlgorithmId:
+        type: string
+      authorId: 
+        type: string
+  
+  ProblemInstanceInfo:
+    type: object
+    required:
+    - name
+    - datasetSize
+    - problemType
+    - description
+    - datasetFilename
+    - authorId
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      datasetSize:
+        type: string
+      problemType:
+        type: string
+      description:
+        type: string
+      datasetFilename:
+        type: string
+      authorId: 
+        type: string
+      
+  BenchmarkInfo:
+    type: object
+    required:
+    - name
+    - parentImplementationId
+    - languageName
+    - executionTime
+    - memoryUsage
+    - machineConfigurationId
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      parentImplementationId:
+        type: string
+      languageName:
+        type: string
+      executionTime:
+        type: number
+      memoryUsage:
+        type: number
+      memorySize:
+        type: string
+      CPU:
+        type: string
+      L1Size:
+        type: string
+      L2Size:
+        type: string
+      L3Size:
+        type: string
+      cores:
+        type: integer
+      threads:
+        type: integer
+  
+  ClassificationInfo:
+    type: object
+    required:
+    - name
+    - parentClassificationId
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      parentClassificationId:
+        type: string
+
+      
+  
+  # ------------------ CORE MODEL DEFINITIONS END --------------------
+
+  # ------------------ ALGORITHMS BEGIN ------------------------------
+
+  AlgorithmResponse:
+    type: object
+    properties:
+      algorithmInfo:
+        $ref: "#/definitions/AlgorithmInfo"
+      status:
+        type: string
+      error:
+        type: string
+
+  AlgorithmAddRequest:
+    type: object
+    properties:
+      algorithmInfo:
+        $ref: "#/definitions/AlgorithmInfo"
+
+  AlgorithmAddResponse:
+    type: object
+    properties:
+      algorithmId:
+        type: string
+      status:
+        type: string
+      error:
+        type: string
+
+  AlgorithmReclassifyRequest:
+    type: object
+    properties:
+      algorithmId:
+        type: string
+      newParentClassificationId:
+        type: string
+
+  AlgorithmReclassifyResponse:
+    type: object
+    properties:
+      algorithmId:
+        type: string
+      status:
+        type: string
+      error:
+        type: string
+  # ------------------ ALGORITHMS END ------------------------------
+
+
+  # ------------------ CLASSIFICATIONS BEGIN -----------------------
+  
+  ClassificationHierarchyResponse:
+    type: object
+    properties:
+      hierarchy:
+        type: array
+        items:
+          type: object
+          properties:
+              
+            id: 
+              type: string
+            name: 
+              type: string
+            parentId:
+              type: string
+            typeName:
+              type: string
+            
+      status:
+        type: string
+      error:
+        type: string
+  
+  ClassificationResponse:
+    type: object
+    properties:
+      classificationInfo:
+        $ref: "#/definitions/ClassificationInfo"
+      status:
+        type: string
+      error:
+        type: string
+        
+  ClassificationAddRequest:
+    type: object
+    properties:
+      classificationInfo:
+        $ref: "#/definitions/ClassificationInfo"
+
+  ClassificationAddResponse:
+    type: object
+    properties:
+      classificationId:
+        type: string
+      status:
+        type: string
+      error:
+        type: string
+
+  ClassificationMergeRequest:
+    type: object
+    properties:
+      classificationAId:
+        type: string
+      classificationBId:
+        type: string
+      classificationNewName:
+        type: string
+      status:
+        type: string
+      error:
+        type: string
+        
+  ClassificationMergeResponse:
+    type: object
+    properties:
+      newParentClassificationId:
+        type: string
+      status:
+        type: string
+      error:
+        type: string
+
+
+  # ------------------ CLASSIFICATIONS END ------------------------------
+
+
+  # ------------------ IMPLEMENTATIONS BEGIN -----------------------
+
+  ImplementationResponse:
+    type: object
+    properties:
+      implementationInfo:
+        $ref: "#/definitions/ImplementationInfo"
+      statusCode:
+        type: integer
+      error:
+        type: string
+
+  ImplementationAddRequest:
+    type: object
+    properties:
+      implementationInfo:
+        $ref: "#/definitions/ImplementationInfo"
+
+  ImplementationAddResponse:
+    type: object
+    properties:
+      implementationId:
+        type: string
+      statusCode:
+        type: integer
+      error:
+        type: string
+
+  # ------------------ IMPLEMENTATIONS END -----------------------
+
+  # ------------------ BENCHMARKS BEGIN --------------------------
+
+  BenchmarkResponse:
+    type: object
+    properties:
+      benchmarkInfo:
+        $ref: "#/definitions/BenchmarkInfo"
+      statusCode:
+        type: integer
+      error:
+        type: string
+
+  BenchmarkAddRequest:
+    type: object
+    properties:
+      benchmarkInfo:
+        $ref: "#/definitions/BenchmarkInfo"
+
+  BenchmarkAddResponse:
+    type: object
+    properties:
+      benchmarkId:
+        type: string
+      statusCode:
+        type: integer
+      error:
+        type: string
+
+  # ------------------ BENCHMARKS END -----------------------------
+
+  # ------------------ PROBLEM INSTANCES BEGIN ------------------
+
+  ProblemInstanceResponse:
+    type: object
+    properties:
+      problemInstanceInfo: 
+        $ref: "#/definitions/ProblemInstanceInfo"
+      statusCode:
+        type: integer
+      error:
+        type: string
+
+  ProblemInstanceAddRequest:
+    type: object
+    properties:
+      problemInstanceInfo: 
+        $ref: "#/definitions/ProblemInstanceInfo"
+
+  ProblemInstanceAddResponse:
+    type: object
+    properties:
+      problemInstanceId:
+        type: string
+      statusCode:
+        type: integer
+      error:
+        type: string
+
+  # ------------------ PROBLEM INSTANCES END ------------------
+
+  # ------------------ USERS BEGIN ----------------------------
+
+
+  UserActivityResponse:
+    type: object
+    properties:
+      algorithms:
+        type: array
+        items:
+          $ref: '#/definitions/AlgorithmInfo'
+      implementations:
+        type: array
+        items:
+          $ref: '#/definitions/ImplementationInfo'
+      problemInstances:
+        type: array
+        items:
+          $ref: '#/definitions/ProblemInstanceInfo'
+
+host: virtserver.swaggerhub.com
+basePath: /wpi-cs509-sao/algohub-api/1

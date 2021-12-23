@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-algohub-dev-161206-authRole",
+      "UnauthRoleArn": "arn:aws:iam::996643090390:role/amplify-algohub-dev-161206-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::996643090390:role/amplify-algohub-dev-161206-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-algohub-dev-161206-deployment",
+      "UnauthRoleName": "amplify-algohub-dev-161206-unauthRole",
+      "StackName": "amplify-algohub-dev-161206",
+      "StackId": "arn:aws:cloudformation:us-east-1:996643090390:stack/amplify-algohub-dev-161206/6be0b880-39c6-11ec-af4b-0ae4c6fb675b",
+      "AmplifyAppId": "d36ab9yhb5fds2"
+    },
+    "categories": {
+      "auth": {
+        "algohub30331ded": {}
+      },
+      "storage": {
+        "algohub6a570a67": {
+          "bucketName": "cs509-algohub-storage",
+          "region": "us-east-1"
+        }
+      }
+    }
+  }
+}
