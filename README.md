@@ -1,4 +1,4 @@
-#Algohub
+# Algohub
 Algohub is the ultimate algorithm analysis and sharing platform. It serves as a centralized hub where users can upload algorithms, explore algorithms uploaded by others in different programming languages, and benchmark them on various machines. Think of it as a Wikipedia for algorithms. This project was developed as the final project for a software engineering class.
 
 ## Technologies Used
